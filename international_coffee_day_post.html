@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Coffee Day Post - Levels (4K 3D)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px; /* Enable 3D space */
+        }
+        .post-container {
+            width: 3840px; /* 4K width for high-res rendering */
+            height: 2160px; /* 4K height; can be screenshot and cropped to square for Instagram */
+            background: linear-gradient(to bottom, #8B4513, #D2B48C); /* Coffee brown gradient */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+            transform: rotateX(5deg) rotateY(5deg); /* Slight 3D tilt for depth */
+        }
+        .coffee-beans {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iNCIgZmlsbD0iIzhCNDUxMyIvPgo8L3N2Zz4='); /* Larger pattern for high-res */
+            opacity: 0.1;
+            background-size: 40px 40px;
+            transform: translateZ(-50px); /* 3D depth */
+        }
+        .promotion {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(100px); /* Bring forward in 3D */
+            text-align: center;
+            color: white;
+            z-index: 2;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.7);
+        }
+        .date {
+            font-size: 72px; /* Scaled for 4K */
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .bogo {
+            font-size: 144px; /* Larger for high-res */
+            font-weight: bold;
+            margin: 60px 0;
+            transform: rotateY(10deg); /* 3D rotation for text */
+        }
+        .details {
+            font-size: 84px;
+            margin: 30px 0;
+        }
+        .hashtag {
+            font-size: 60px;
+            margin-top: 60px;
+        }
+        .coffee-cups {
+            position: absolute;
+            bottom: 600px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(50px);
+            display: flex;
+            gap: 150px;
+            z-index: 2;
+        }
+        .cup {
+            width: 450px; /* Scaled up */
+            height: 600px;
+            background: linear-gradient(to bottom, #FFEBCD, #FFF8DC); /* Gradient for 3D look */
+            border-radius: 0 0 225px 225px;
+            position: relative;
+            border: 9px solid #8B4513;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* Depth shadow */
+            transform-style: preserve-3d;
+            transform: rotateY(15deg) rotateX(10deg); /* 3D tilt */
+        }
+        .cup::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: 30px;
+            height: 300px;
+            background: linear-gradient(to bottom, #654321, #4A2C0B); /* Coffee gradient */
+            border-radius: 0 0 150px 150px;
+            box-shadow: inset 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .cup.hot::after {
+            content: 'Hot ☕';
+            position: absolute;
+            bottom: -90px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 54px;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+        }
+        .cup.cold::after {
+            content: 'Cold 🧊';
+            position: absolute;
+            bottom: -90px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 54px;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+        }
+        .snacks {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(20px);
+            display: flex;
+            gap: 60px;
+            z-index: 2;
+        }
+        .snack-bar {
+            width: 240px;
+            height: 360px; /* Scaled */
+            background: linear-gradient(to right, #DEB887, #D2691E); /* 3D gradient */
+            border: 6px solid #8B4513;
+            border-radius: 30px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #333;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: rotateX(5deg) rotateY(10deg); /* 3D effect */
+        }
+        .snack-bar:nth-child(1)::before { content: 'Pistachio Granola'; }
+        .snack-bar:nth-child(2)::before { content: 'Cacao Hazelnut'; }
+        .snack-bar:nth-child(3)::before { content: 'Joyful Bar'; }
+        .snack-bar:nth-child(4)::before { content: 'Oats Bakery'; }
+        .building {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 900px; /* Scaled */
+            background: linear-gradient(to bottom, skyblue, #87CEEB);
+            z-index: 1;
+            transform: translateZ(-100px); /* Push back for depth */
+        }
+        .levels-building {
+            position: absolute;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%) rotateY(-5deg); /* 3D angle */
+            width: 1200px;
+            height: 600px;
+            background: linear-gradient(to bottom, #F5DEB3, #D2B48C); /* Building gradient */
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            font-weight: bold;
+            color: #8B4513;
+            text-shadow: 2px 2px 4px white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 5px solid #A0522D;
+        }
+        .game-icons {
+            position: absolute;
+            top: 600px;
+            right: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            z-index: 2;
+            transform: translateZ(80px);
+        }
+        .icon {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(to bottom, #90EE90, #32CD32); /* 3D gradient */
+            border-radius: 50%;
+            border: 6px solid #228B22;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transform: rotateY(20deg) rotateX(10deg); /* 3D spin effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="post-container">
+        <div class="coffee-beans"></div>
+        <div class="promotion">
+            <div class="date">On the 1st of October</div>
+            <div class="bogo">BUY ONE</div>
+            <div class="bogo">& GET THE SECOND</div>
+            <div class="bogo">FOR FREE</div>
+            <div class="details">ON HOT / COLD BEVERAGES</div>
+            <div class="hashtag">#InternationalCoffeeDay</div>
+        </div>
+        <div class="coffee-cups">
+            <div class="cup hot"></div>
+            <div class="cup cold"></div>
+        </div>
+        <div class="snacks">
+            <div class="snack-bar"></div>
+            <div class="snack-bar"></div>
+            <div class="snack-bar"></div>
+            <div class="snack-bar"></div>
+        </div>
+        <div class="building">
+            <div class="levels-building">LEVELS Cafe</div>
+        </div>
+        <div class="game-icons">
+            <div class="icon">🃏</div> <!-- Cards -->
+            <div class="icon">🎲</div> <!-- Dice -->
+            <div class="icon">🏠</div> <!-- Monopoly house -->
+        </div>
+    </div>
+</body>
+</html>
